@@ -4,8 +4,10 @@ const userControllers = {};
 
 userControllers.createUser = (req, res, next) => {
   const string = `SELECT * FROM users`;
+  console.log(`hellooool`)
   //destructure req.body to get pertinent info
   const { email, firstName, lastName, username, password, confirmPassword } = res.body;
+
   
   //check if passwords match
   if (password === confirmPassword) {
@@ -23,7 +25,7 @@ userControllers.createUser = (req, res, next) => {
   } else {
     //if passwords don't match 
     return next({
-      error: 'Passwords not matching.'
+      error: 'Passwords not matching.' 
     })
   }
   //send confirmation back to client
@@ -35,7 +37,6 @@ userControllers.logIn = (req, res, next) => {
   // get username and password from req.body
   let username = req.body.username;
   let password = req.body.password;
-  let values = [username];
   // query from user where id is equal to username
   const queryUser = 'SELECT * FROM users WHERE username = $1'
   // check if username exits by querying the database
