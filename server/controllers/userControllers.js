@@ -13,18 +13,20 @@ const userController = {};
 
 userController.logIn = (req, res, next) => {
   // get username and password from req.body
-  let username = req.body.username;
+  // let username = req.body.username;
   let password = req.body.password;
+  //get user id from query
+  let userID = [req.query.id]
   // query from user where id is equal to username
-  const queryUser = 'SELECT * FROM users'
+  const queryUser = 'SELECT * FROM users WHERE users._id = $1'
   // check if username exits by querying the database
-  db.query(queryUser,(err,user) => {
+  db.query(queryUser, userID, (err,user) => {
     // if err send to global err handler 
     if (!user.username) {
-      return next({err}) 
+      return next({ error: err }) 
     } else {
       // if password checks out send them to the main page
-      if (user[0].password === password) {
+      if (user.rows[0].password === password) {
         // if it is send them to main page
         return next();
       }
