@@ -2,10 +2,10 @@
 import yetiReducer from './yetiReducer';
 
 // importing combinedReducers from redux module, this will create one root reducer.
-import { combinedReducers } from 'redux';
+import { combineReducers } from 'redux';
 
 //
-const rootReducer = combinedReducers({
+const rootReducer = combineReducers({
   yetiReducer,
 });
 
