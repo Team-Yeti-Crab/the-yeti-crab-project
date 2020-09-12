@@ -1,32 +1,28 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const userController = require('./controllers/userControllers');
 
 const app = express();
 const PORT = 3000;
 
-// handle requests to login 
-app.post('api/login', (req,res) => {
-  // grab username and password from req.body
-  // see if username and password are in the database 
-  // if it is send them to main page
-  // if not, keep them at login page
-
+// handle requests to login
+// app.post('api/login', (req,res) => {};
+// grab username and password from req.body
+// see if username and password are in the database
+// if it is send them to main page
+// if not, keep them at login page
 
 //handle parsing request body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
- staging-branch
 
-// handle requests to login 
-// route to controller 
-app.post('api/login',
-  userController.logIn,
- (req,res) => {
-    res.redirect('/main')
-})
+// handle requests to login
+// route to controller
+app.post('api/login', userController.logIn, (req, res) => {
+  res.redirect('/main');
+});
 
 //handle user sign up request
 //route them to controller
@@ -35,7 +31,7 @@ app.post('api/signup', userController.createUser, (req, res) => {
 });
 
 // catch all route handler
-app.use((req,res) => res.sendStatus(404))
+app.use((req, res) => res.sendStatus(404));
 
 // catch all errors
 app.use((err, req, res, next) => {
@@ -51,4 +47,4 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log('Server listening on port ' + PORT);
-})
+});
