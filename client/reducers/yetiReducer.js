@@ -10,7 +10,7 @@ const initialState = {
   isLoggedIn: false,
   currentUserId: '',
   // Path used for react router
-  path: '',
+  path: '/',
   // Post will be array of objects
   posts: [],
   loading: false,
