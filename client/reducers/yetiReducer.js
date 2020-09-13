@@ -8,7 +8,9 @@ const initialState = {
   isLoggingIn: false,
   isSigningUp: false,
   isLoggedIn: false,
-  currentUser: ''
+  currentUserId: '',
+  loading: false,
+  error: null
 };
 
 // reducer function
@@ -27,9 +29,48 @@ const yetiReducer = (state = initialState, action) => {
         ...state,
         isSigningUp: true
       }
-    // If existing user is logging in
-    case actionTypes.LOGIN_AUTH :
-
+    // LOGIN REDUCERS
+    case actionTypes.LOGIN_START :
+      return {
+        ...state,
+        loading: true
+      }
+    case actionTypes.LOGIN_SUCCESS :
+      return {
+        ...state,
+        isLoggingIn: false,
+        isLoggedIn: true,
+        currentUserId: action.payload,
+        loading: false,
+        error: null
+      }
+    case actionTypes.LOGIN_FAILURE :
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error
+      }
+    // SIGNUP REDUCERS
+    case actionTypes.SIGNUP_START :
+      return {
+        ...state,
+        loading: true
+      }
+    case actionTypes.SIGNUP_SUCCESS :
+      return {
+        ...state,
+        isSigningUp: false,
+        isLoggedIn: true,
+        currentUserId: action.payload.user_id,
+        loading: false,
+        error: null
+      }
+    case actionTypes.SIGNUP_FAILURE :
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error
+      }
     default :
       return state
   }

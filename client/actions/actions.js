@@ -26,7 +26,7 @@ export const login = (userInfo) => {
       password: userInfo.password
     })
     .then(res => dispatch(loginSuccess(res.data)))
-    .catch(err => dispatch(loginFailed(err)));
+    .catch(err => dispatch(loginFailed(err.message)));
   }
 };
 
@@ -48,11 +48,33 @@ export const loginFailed = (loginErr) => ({
 });
 
 // SIGNUP ACTIONS //
-// Signup will dispatch newUserinfo (also an object) to reducer
+// Signup will return a dispatch that gets invoked once by middleware, then invoked again when dispatched in React
 export const signup = (newUserInfo) => {
-  const action = {
-    type: actionTypes.SIGNUP_AUTH,
-    payload: newUserInfo
+  return dispatch => {
+    (signupStart());
+
+    // Axios post to signup
+    axios.post('/api/signup', {
+      firstName: newUserInfo.firstName,
+      lastName: newUserInfo.lastName,
+      email: newUserInfo.email,
+      username: newUserInfo.username
+    })
+    .then(res => dispatch(signupSuccess(res.data)))
+    .catch(err => dispatch(signupFailed(err.message)));
   }
-  dispatch(action);
 }
+// Signup start lets store know request initiated
+export const signupStart = () => ({
+  type: actionTypes.SIGNUP_START
+});
+// Signup success changes state based on successful response 
+export const signupSuccess = (signupResponse) => ({
+  type: actionTypes.SIGNUP_SUCCESS,
+  payload: {...signupResponse}
+});
+// Signup failure responds with the specific error message and adds it to state
+export const signupFailed = (signupErr) => ({
+  type: actionTypes.SIGNUP_FAILURE,
+  payload: {...signupErr}
+});
