@@ -1,16 +1,16 @@
 // import statements
-import * as actionTypes from '../constants/actiontypes';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+const Buttons = (props) => {
+
+}
+
+
 class Buttons extends Component {
-  render() {
-    return (
-      <button onClick={onClick} type={type}>
-        Woohoo!.
-      </button>
-    );
-  }
+
+    <button onClick={onClick} type={type} id={id}>Woohoo!</button>
+
 }
 
 // login button
@@ -19,4 +19,4 @@ class Buttons extends Component {
 
 // signup button
 // when signup button is clicked a field will populate requesting user information (firstname, lastname, email, username, password). a submit button will also have to popoulate. once submit is clicked the user will then be routed to their new home page.
-module.exports = Buttons;
+export default Buttons;
