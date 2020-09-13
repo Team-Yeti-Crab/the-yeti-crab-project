@@ -11,7 +11,7 @@ const PORT = 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// statically serve everything in the build folder on the route '/build'
+// serve from build folder with route '/build'
 app.use('/build', express.static(path.join(__dirname, '../build')));
 
 // handle requests to login 
@@ -22,15 +22,14 @@ app.post('/api/login',
     res.status(200).send(res.locals.login)
 })
 
-//handle user sign up request
-//route them to controller
+//handle signup request
 app.post('/api/signup', userControllers.createUser, (req, res) => {
-  res.status(200).send(/* send back to client the main page */);
+  res.json(`User created! Welcome!`)
 });
 
 
 // route to get all info from posts db
-app.get('/api/posts' )
+app.get('/api/posts')
 
 // route to create posts in postgresl db
 app.post('/api/posts',
@@ -41,14 +40,14 @@ app.post('/api/posts',
 })
 
 // catch all route handler
-app.use((req,res) => res.sendStatus(404))
+app.use((req, res) => res.sendStatus(404));
 
-// catch all errors
+// global event handler
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 400,
-    message: { err: 'An error occurred' },
+    message: { err: 'An error occurred, Global error handler' },
   };
   const errorObj = Object.assign({}, defaultErr, err);
   // console.log(errorObj.log);
@@ -57,4 +56,4 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log('Server listening on port ' + PORT);
-})
+});

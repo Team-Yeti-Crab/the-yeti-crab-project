@@ -3,16 +3,17 @@ const db = require('../models/usersModel')
 const userControllers = {};
 
 userControllers.createUser = (req, res, next) => {
-  console.log('in createUser')
-  const string = `SELECT * FROM users`;
   
+  const string = `SELECT * FROM users`;
+  console.log(`hellooool`)
   //destructure req.body to get pertinent info
   const { email, firstName, lastName, username, password, confirmPassword } = res.body;
+
   
   //check if passwords match
   if (password === confirmPassword) {
     //check if email already exists or not
-    if (db.query(string, (err, res) => res[0].email === email )) {
+    if (db.query(string, (err, res) => res.rows[0].email === email )) {
       //if it does return error msg back to client
       return next({
         error: 'Email already registered, please login or use another email.'
@@ -25,17 +26,13 @@ userControllers.createUser = (req, res, next) => {
   } else {
     //if passwords don't match 
     return next({
-      error: 'Passwords not matching.'
+      error: 'Passwords not matching.' 
     })
   }
   //send confirmation back to client
+  res.locals.createuser = `user created successfully`
   return next()
 }
-    //on success store the username and pw in database
-    //send confirmation back to client
-  //if passwords don't match 
-    //trigger error
-    //
 
 userControllers.verifyUser = (req, res, next) => {
   console.log('hello')
@@ -85,6 +82,5 @@ userControllers.createPost = (req, res, next) => {
   })
 }
 
-
-
 module.exports = userControllers;
+
