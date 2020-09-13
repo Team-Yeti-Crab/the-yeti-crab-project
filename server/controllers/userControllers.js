@@ -105,6 +105,7 @@ userControllers.getAllPosts = (req, res, next) => {
     if (err) {
       return next({error: err})
     }
+    // send back an array of objects
     res.locals.posts = posts.rows;
     return next();
   })

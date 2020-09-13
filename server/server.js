@@ -40,6 +40,7 @@ app.get('/api/posts',
 
 // post req to create posts in posts table
 app.post('/api/posts',
+  // middleware to create posts
   userControllers.createPost,
   (req,res) => {
   // middleware to create posts in db
