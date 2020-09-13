@@ -7,7 +7,7 @@ class Buttons extends Component {
   render() {
     return (
       <button onClick={onClick} type={type}>
-        Woohoo!
+        Woohoo!.
       </button>
     );
   }
