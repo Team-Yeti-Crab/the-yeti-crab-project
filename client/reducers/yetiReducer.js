@@ -42,6 +42,7 @@ const yetiReducer = (state = initialState, action) => {
         isLoggingIn: false,
         isLoggedIn: true,
         currentUserId: action.payload,
+        //Something with posts
         loading: false,
         error: null
       }
