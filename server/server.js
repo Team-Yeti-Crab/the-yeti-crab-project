@@ -3,35 +3,27 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 const userControllers = require('./controllers/userControllers');
-<<<<<<< HEAD
-const { EEXIST } = require('constants');
-const app = express();
-const PORT = 3000;
-=======
+
 
 const app = express();
 const PORT = 3000;
-
->>>>>>> 7f32929bc0146b51cdab427f78f68bde4d5abb5b
 
 //handle parsing request body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 // serve from build folder with route '/build'
 app.use('/build', express.static(path.join(__dirname, '../build')));
 
-//handle login request
-app.post('/api/login', 
-  userControllers.logIn,
+// handle requests to login 
+// route to controller 
+app.post('/api/login',
+  userControllers.verifyUser,
   (req,res) => {
-  res.json(res.locals.login);
+    res.status(200).send(res.locals.login)
 })
 
-
 //handle signup request
-<<<<<<< HEAD
 app.post('/api/signup',
  userControllers.queryNewUser,
  userControllers.createNewUser, 
@@ -39,18 +31,20 @@ app.post('/api/signup',
   res.status(200).json(res.locals.createuser)
 });
 
-// catch all route handler
-app.use((req,res) => res.sendStatus(402))
-
 //get req to get all posts in the post table
-=======
-app.post('/api/signup', userControllers.createUser, (req, res) => {
-  res.json(`User created! Welcome!`)
-});
+// route to get all info from posts db
+app.get('/api/posts')
+
+// route to create posts in postgresl db
+app.post('/api/posts',
+  userControllers.createPost,
+  (req,res) => {
+  // middleware to create posts in db
+  res.status(200).send(res.locals.post) // respond with all post info
+})
 
 // catch all route handler
 app.use((req, res) => res.sendStatus(404));
->>>>>>> 7f32929bc0146b51cdab427f78f68bde4d5abb5b
 
 // global event handler
 app.use((err, req, res, next) => {
