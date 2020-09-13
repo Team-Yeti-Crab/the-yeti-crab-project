@@ -5,7 +5,8 @@ module.exports = {
   entry: './client/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -43,6 +44,8 @@ module.exports = {
         target: 'http://localhost:3000/',
         secure: false  
       }
-    }
+    },
+    // Routes page to index.html in WDS if there is any error with path
+    historyApiFallback: true
   }
 }

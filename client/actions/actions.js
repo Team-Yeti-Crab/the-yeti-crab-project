@@ -119,4 +119,12 @@ export const addPostSuccess = (addPostResponse) => ({
 export const addPostFailed = (postErr) => ({
   type: actionTypes.ADDPOST_FAILURE,
   payload: {...postErr}
+});
+
+// LOGIN AND SIGNUP REDIRECT
+export const loginRedirect = () => ({
+  type: actionTypes.LOGIN_REDIRECT
+});
+export const signupRedirect = () => ({
+  type: actionTypes.SIGNUP_REDIRECT
 })
