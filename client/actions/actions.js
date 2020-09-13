@@ -13,3 +13,20 @@ export const signupPopup = (dispatch) => (
   })
 );
 
+// Login will dispatch userInfo (object with username and password values) to reducer, saw docs that didnt user dispatch as param
+export const login = (userInfo) => {
+  const action = {
+    type: actionTypes.LOGIN_AUTH,
+    payload: userInfo
+  }
+  dispatch(action);
+};
+
+// Signup will dispatch newUserinfo (also an object) to reducer
+export const signup = (newUserInfo) => {
+  const action = {
+    type: actionTypes.SIGNUP_AUTH,
+    payload: newUserInfo
+  }
+  dispatch(action);
+}

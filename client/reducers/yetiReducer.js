@@ -7,6 +7,8 @@ import * as actionTypes from '../constants/actiontypes';
 const initialState = {
   isLoggingIn: false,
   isSigningUp: false,
+  isLoggedIn: false,
+  currentUser: ''
 };
 
 // reducer function
@@ -25,6 +27,9 @@ const yetiReducer = (state = initialState, action) => {
         ...state,
         isSigningUp: true
       }
+    // If existing user is logging in
+    case actionTypes.LOGIN_AUTH :
+
     default :
       return state
   }

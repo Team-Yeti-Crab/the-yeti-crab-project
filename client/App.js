@@ -12,7 +12,7 @@ const mapStateToProps = (state) => ({
 // mapping our dispatch to props, each key is method which dispatches an action creator
 const mapDispatchToProps = (dispatch) => ({
   loginPopup: () => dispatch(actions.loginPopup()),
-  signupPopop: () => dispatch(actions.signupPopup()),
+  signupPopup: () => dispatch(actions.signupPopup()),
 });
 
 // declare a const App which will will be our main component which will render child components.
