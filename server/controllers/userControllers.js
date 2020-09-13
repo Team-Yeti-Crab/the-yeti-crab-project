@@ -26,19 +26,15 @@ userControllers.queryNewUser = async (req, res, next) => {
   })
 }
 
-userControllers.createNewUser = (req, res, next) => {
+userControllers.createNewUser = async (req, res, next) => {
   //check if passwords don't match
   if (res.locals.createuser.password === res.locals.createuser.confirmPassword) {
     //do I need to include users_id for userinfo table
     //remove ``
     //add user to User and Userinfo tables
     //users works userinfo does not
-    db.query(`INSERT INTO Users (_id, username, password, email) 
-    VALUES (${Math.floor(Math.random() * 100)}, '${res.locals.createuser.username}', '${res.locals.createuser.password}', '${res.locals.createuser.email}')`)
-    // .then(() => {
-    //   db.query(`INSERT INTO Userinfo (_id, firstname, lastname, email, users_id, username) 
-    //   VALUES (${Math.floor(Math.random() * 100)}, '${res.locals.createuser.firstName}', '${res.locals.createuser.lastName}', '${res.locals.createuser.email}', '2', '${res.locals.createuser.username}'`)
-    // })
+    await db.query(`INSERT INTO Users (_id, username, password, email, first_name, last_name) 
+    VALUES (${Math.floor(Math.random() * 1000)}, '${res.locals.createuser.username}', '${res.locals.createuser.password}', '${res.locals.createuser.email}', '${res.locals.createuser.firstName}', '${res.locals.createuser.lastName}')`)
     .then(() => {
       //send confirmation back to client
       res.locals.createuser = `user created successfully`
