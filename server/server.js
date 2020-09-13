@@ -20,7 +20,7 @@ app.use('/build', express.static(path.join(__dirname, '../build')));
 app.post('/api/login',
   userControllers.verifyUser,
   (req,res) => {
-    res.status(200).send(res.locals.login)
+    res.status(200).json(res.locals.login)
 })
 
 //handle signup request
@@ -31,16 +31,19 @@ app.post('/api/signup',
   res.status(200).json(res.locals.createuser)
 });
 
-//get req to get all posts in the post table
-// route to get all info from posts db
-app.get('/api/posts')
+// get req to get all posts in the post table
+app.get('/api/posts',
+  userControllers.getAllPosts,
+  (req, res) => {
+  res.status(200).json(res.locals.posts)
+})
 
-// route to create posts in postgresl db
+// post req to create posts in posts table
 app.post('/api/posts',
   userControllers.createPost,
   (req,res) => {
   // middleware to create posts in db
-  res.status(200).send(res.locals.post) // respond with all post info
+  res.status(200).json(res.locals.posts) // respond with all post info
 })
 
 // catch all route handler
