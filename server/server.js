@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 const userControllers = require('./controllers/userControllers');
 
+
 const app = express();
 const PORT = 3000;
 
@@ -23,11 +24,14 @@ app.post('/api/login',
 })
 
 //handle signup request
-app.post('/api/signup', userControllers.createUser, (req, res) => {
-  res.json(`User created! Welcome!`)
+app.post('/api/signup',
+ userControllers.queryNewUser,
+ userControllers.createNewUser, 
+ (req, res) => {
+  res.status(200).json(res.locals.createuser)
 });
 
-
+//get req to get all posts in the post table
 // route to get all info from posts db
 app.get('/api/posts')
 
@@ -47,10 +51,9 @@ app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 400,
-    message: { err: 'An error occurred, Global error handler' },
+    message: { err: err },
   };
   const errorObj = Object.assign({}, defaultErr, err);
-  // console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
 });
 
