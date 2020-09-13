@@ -9,6 +9,7 @@ const initialState = {
   isSigningUp: false,
   isLoggedIn: false,
   currentUserId: '',
+  posts: [],
   loading: false,
   error: null
 };
@@ -71,6 +72,45 @@ const yetiReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload.error
       }
+    // GET POST REDUCERS
+    case actionTypes.GETPOST_START :
+      return {
+        ...state,
+        loading: true
+      }
+    case actionTypes.GETPOST_SUCCESS :
+      return {
+        ...state,
+        posts: [...action.payload],
+        loading: false,
+        error: null
+      }
+    case actionTypes.GETPOST_FAILURE :
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error
+      }
+    // ADD POST REDUCERS
+    case actionTypes.ADDPOST_START :
+      return {
+        ...state,
+        loading: true
+      }
+    case actionTypes.ADDPOST_SUCCESS :
+      return {
+        ...state,
+        posts: [...state.posts, action.payload],
+        loading: false,
+        error: null
+      }
+    case actionTypes.ADDPOST_FAILURE :
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error
+      }
+    // DEFAULT RETURN
     default :
       return state
   }
