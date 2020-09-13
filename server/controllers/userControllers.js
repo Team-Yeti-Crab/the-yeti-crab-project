@@ -1,8 +1,9 @@
 const db = require('../models/usersModel')
 
-const userController = {};
+const userControllers = {};
 
-userController.createUser = (req, res, next) => {
+userControllers.createUser = (req, res, next) => {
+  console.log('in createUser')
   const string = `SELECT * FROM users`;
   
   //destructure req.body to get pertinent info
@@ -36,27 +37,35 @@ userController.createUser = (req, res, next) => {
     //trigger error
     //
 
-userController.logIn = (req, res, next) => {
+userControllers.logIn = (req, res, next) => {
+  console.log('hello')
   // get username and password from req.body
-  // let username = req.body.username;
-  let password = req.body.password;
-  //get user id from query
-  let userID = [req.query.id]
+  const username = req.body.username
+  const password = req.body.password;
+  // store username as an array in values
+  const values = [username];
   // query from user where id is equal to username
-  const queryUser = 'SELECT * FROM users WHERE users._id = $1'
+  const queryUser = 'SELECT * FROM users WHERE username = $1'
   // check if username exits by querying the database
-  db.query(queryUser, userID, (err,user) => {
+  db.query(queryUser, values, (err,user) => {
     // if err send to global err handler 
-    if (!user.username) {
-      return next({ error: err }) 
+    if (!user.rows[0].username) {
+      return next({ 
+        error: err 
+      }) 
     } else {
-      // if password checks out send them to the main page
+      // if password checks out send back user id
       if (user.rows[0].password === password) {
-        // if it is send them to main page
+        //store in res.locals
+        res.locals.login = user.rows[0]._id;
+        // return next back to server.js
+        return next();
+      } else {
+        res.locals.login = 'password is incorrect';
         return next();
       }
     }
   })
 }
 
-module.exports = userController;
+module.exports = userControllers;
