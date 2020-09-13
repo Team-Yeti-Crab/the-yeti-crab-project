@@ -3,15 +3,10 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 const Buttons = (props) => {
-
-}
-
-
-class Buttons extends Component {
-
-    <button onClick={onClick} type={type} id={id}>Woohoo!</button>
-
-}
+  <button onClick={onClick} type={type} id={id}>
+    Woohoo!{this.props}
+  </button>;
+};
 
 // login button
 // the login once clicked will populate a username/password field to allow for signup
