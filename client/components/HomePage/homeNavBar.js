@@ -5,6 +5,7 @@ const HomeNavBar = props => {
     <div id="homeNavBar">
       {/* Nav BAR LOGO */}
       {/* A cute yeti will be placed in the background of this container */}
+      {/* On click should bring you back to home page / refresh home page */}
       <div id="homeYetiLogo"></div>
 
 
