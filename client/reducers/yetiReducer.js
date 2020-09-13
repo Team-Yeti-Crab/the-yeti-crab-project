@@ -9,6 +9,9 @@ const initialState = {
   isSigningUp: false,
   isLoggedIn: false,
   currentUserId: '',
+  // Path used for react router
+  path: '',
+  // Post will be array of objects
   posts: [],
   loading: false,
   error: null
@@ -42,6 +45,7 @@ const yetiReducer = (state = initialState, action) => {
         isLoggingIn: false,
         isLoggedIn: true,
         currentUserId: action.payload,
+        path: '/main',
         //Something with posts
         loading: false,
         error: null
@@ -64,6 +68,7 @@ const yetiReducer = (state = initialState, action) => {
         isSigningUp: false,
         isLoggedIn: true,
         currentUserId: action.payload.user_id,
+        path: '/main',
         loading: false,
         error: null
       }
@@ -110,6 +115,17 @@ const yetiReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload.error
+      }
+    // LOGIN AND SIGNUP REDIRECT REDUCERS
+    case actionTypes.LOGIN_REDIRECT :
+      return {
+        ...state,
+        path: '/login'
+      }
+    case actionTypes.SIGNUP_REDIRECT :
+      return {
+        ...state,
+        path: '/signup'
       }
     // DEFAULT RETURN
     default :
