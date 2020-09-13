@@ -37,7 +37,7 @@ userControllers.createUser = (req, res, next) => {
     //trigger error
     //
 
-userControllers.logIn = (req, res, next) => {
+userControllers.verifyUser = (req, res, next) => {
   console.log('hello')
   // get username and password from req.body
   const username = req.body.username
@@ -67,5 +67,24 @@ userControllers.logIn = (req, res, next) => {
     }
   })
 }
+
+userControllers.createPost = (req, res, next) => {
+  // destructure title, pros, cons, date  from the req body
+  const { _id, title, pros, cons, date, users_id } = req.body;
+  console.log(req.body);
+  // create query to insert into db
+  const postQuery = `INSERT INTO posts (_id, title, pros, cons, date, users_id)
+                    VALUES ('${_id}','${title}','${pros}','${cons}','${date}', '${users_id}')`
+  db.query (postQuery, (err, post) => {
+    console.log('query completed', post);
+    if (err) {
+      return next({ error: err })
+    } 
+    res.locals.posts = post;
+    return next()
+  })
+}
+
+
 
 module.exports = userControllers;

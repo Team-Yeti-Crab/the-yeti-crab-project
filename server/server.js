@@ -17,9 +17,9 @@ app.use('/build', express.static(path.join(__dirname, '../build')));
 // handle requests to login 
 // route to controller 
 app.post('/api/login',
-  userControllers.logIn,
+  userControllers.verifyUser,
   (req,res) => {
-    res.status(200).send(res.locals.logIn)
+    res.status(200).send(res.locals.login)
 })
 
 //handle user sign up request
@@ -27,6 +27,18 @@ app.post('/api/login',
 app.post('/api/signup', userControllers.createUser, (req, res) => {
   res.status(200).send(/* send back to client the main page */);
 });
+
+
+// route to get all info from posts db
+app.get('/api/posts' )
+
+// route to create posts in postgresl db
+app.post('/api/posts',
+  userControllers.createPost,
+  (req,res) => {
+  // middleware to create posts in db
+  res.status(200).send(res.locals.post) // respond with all post info
+})
 
 // catch all route handler
 app.use((req,res) => res.sendStatus(404))
