@@ -3,6 +3,7 @@ const db = require('../models/usersModel')
 const userControllers = {};
 
 userControllers.createUser = (req, res, next) => {
+  
   const string = `SELECT * FROM users`;
   console.log(`hellooool`)
   //destructure req.body to get pertinent info
@@ -33,33 +34,53 @@ userControllers.createUser = (req, res, next) => {
   return next()
 }
 
-userControllers.logIn = (req, res, next) => {
+userControllers.verifyUser = (req, res, next) => {
+  console.log('hello')
   // get username and password from req.body
-  let username = req.body.username;
-  let password = req.body.password;
+  const username = req.body.username
+  const password = req.body.password;
+  // store username as an array in values
+  const values = [username];
   // query from user where id is equal to username
   const queryUser = 'SELECT * FROM users WHERE username = $1'
   // check if username exits by querying the database
   db.query(queryUser, values, (err,user) => {
-    console.log(user.rows)
     // if err send to global err handler 
     if (!user.rows[0].username) {
       return next({ 
         error: err 
       }) 
     } else {
-      // if password checks out send them to the main page
+      // if password checks out send back user id
       if (user.rows[0].password === password) {
-        // if it is send them to main page
-        res.locals.login = user.rows._id;
+        //store in res.locals
+        res.locals.login = user.rows[0]._id;
+        // return next back to server.js
         return next();
       } else {
-        res.locals.login = `password is incorrect`;
-        return next()
+        res.locals.login = 'password is incorrect';
+        return next();
       }
     }
   })
 }
 
+userControllers.createPost = (req, res, next) => {
+  // destructure title, pros, cons, date  from the req body
+  const { _id, title, pros, cons, date, users_id } = req.body;
+  console.log(req.body);
+  // create query to insert into db
+  const postQuery = `INSERT INTO posts (_id, title, pros, cons, date, users_id)
+                    VALUES ('${_id}','${title}','${pros}','${cons}','${date}', '${users_id}')`
+  db.query (postQuery, (err, post) => {
+    console.log('query completed', post);
+    if (err) {
+      return next({ error: err })
+    } 
+    res.locals.posts = post;
+    return next()
+  })
+}
+
 module.exports = userControllers;
-                 
+
