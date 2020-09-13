@@ -18,7 +18,7 @@ app.use('/build', express.static(path.join(__dirname, '../build')));
 app.post('/api/login', 
   userControllers.verifyUser,
   (req,res) => {
-  res.json(res.locals.login);
+    res.status(200).json(res.locals.login)
 })
 
 //handle signup request
@@ -28,6 +28,24 @@ app.post('/api/signup',
  (req, res) => {
   res.status(200).json(res.locals.createuser)
 });
+
+
+// get req to get all posts in the post table
+app.get('/api/posts',
+  userControllers.getAllPosts,
+  (req, res) => {
+  res.status(200).json(res.locals.posts)
+})
+
+// post req to create posts in posts table
+app.post('/api/posts',
+  // middleware to create posts
+  userControllers.createPost,
+  (req,res) => {
+  // middleware to create posts in db
+  res.status(200).json(res.locals.posts) // respond with all post info
+})
+
 
 // catch all route handler
 app.use((req,res) => res.sendStatus(402))

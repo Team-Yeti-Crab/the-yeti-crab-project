@@ -95,5 +95,17 @@ userControllers.createPost = (req, res, next) => {
   })
 }
 
+userControllers.getAllPosts = (req, res, next) => {
+  const allPosts = 'SELECT * FROM posts'
+  db.query(allPosts, (err, posts) => {
+    if (err) {
+      return next({error: err})
+    }
+    // send back an array of objects
+    res.locals.posts = posts.rows;
+    return next();
+  })
+}
+
 module.exports = userControllers;
 
