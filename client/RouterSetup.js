@@ -3,6 +3,8 @@ import * as actions from './actions/actions';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
+// FILE TO START WORKING ON REACT ROUTER SETUP FOR APPLICATION //
+
 // mapping our state to props, so props will reflect our state's values.
 const mapStateToProps = (state) => ({
   isLoggingIn: state.yetiReducer.isLoggingIn,

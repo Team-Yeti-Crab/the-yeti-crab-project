@@ -1,62 +1,103 @@
 const db = require('../models/usersModel')
 
-const userController = {};
+const userControllers = {};
 
-userController.createUser = (req, res, next) => {
-  const string = `SELECT * FROM users`;
-  
-  //destructure req.body to get pertinent info
-  const { email, firstName, lastName, username, password, confirmPassword } = res.body;
-  
-  //check if passwords match
-  if (password === confirmPassword) {
-    //check if email already exists or not
-    if (db.query(string, (err, res) => res[0].email === email )) {
-      //if it does return error msg back to client
-      return next({
+
+//query user will query the db to check if that email already exists or not
+userControllers.queryNewUser = async (req, res, next) => {
+  //destructure req.body and assign variables to res.locals
+  const { email, firstName, lastName, username, password, confirmPassword } = req.body;
+  res.locals.createuser = { email, firstName, lastName, username, password, confirmPassword }
+  let value = [email]
+
+  const string = 'SELECT * FROM users WHERE email = $1';
+  db.query(string, value, (err, data) => {
+    if (err) return next(err)
+    if (data.rows[0]) {
+      if (data.rows[0].email === email) {
+        res.locals.createuser.email = data.rows[0].email;
+        return next({
         error: 'Email already registered, please login or use another email.'
-      })
-    } else {
-      //on success store the username and pw in database
-      db.query(`INSERT INTO User VALUES (${Math.floor(Math.random() * 100)}, '${username}', '${password}', '${email}')`)
-      db.query(`INSERT INTO Userinfo VALUES (${Math.floor(Math.random() * 100)}, '${firstName}', '${lastName}', '${email}', '${username}'`)
+      })}
+    } else {      
+      res.locals.createuser.email = email
+      return next()
     }
-  } else {
-    //if passwords don't match 
-    return next({
-      error: 'Passwords not matching.'
+  })
+}
+
+userControllers.createNewUser = (req, res, next) => {
+  //check if passwords don't match
+  if (res.locals.createuser.password === res.locals.createuser.confirmPassword) {
+    //do I need to include users_id for userinfo table
+    //remove ``
+    //add user to User and Userinfo tables
+    //users works userinfo does not
+    db.query(`INSERT INTO Users (_id, username, password, email) 
+    VALUES (${Math.floor(Math.random() * 100)}, '${res.locals.createuser.username}', '${res.locals.createuser.password}', '${res.locals.createuser.email}')`)
+    // .then(() => {
+    //   db.query(`INSERT INTO Userinfo (_id, firstname, lastname, email, users_id, username) 
+    //   VALUES (${Math.floor(Math.random() * 100)}, '${res.locals.createuser.firstName}', '${res.locals.createuser.lastName}', '${res.locals.createuser.email}', '2', '${res.locals.createuser.username}'`)
+    // })
+    .then(() => {
+      //send confirmation back to client
+      res.locals.createuser = `user created successfully`
+      return next()
     })
   }
-  //send confirmation back to client
-  return next()
-}
-    //on success store the username and pw in database
-    //send confirmation back to client
   //if passwords don't match 
-    //trigger error
-    //
+  return next({
+    error: 'Passwords not matching.' 
+  })
+}
 
-userController.logIn = (req, res, next) => {
+
+userControllers.verifyUser = (req, res, next) => {
   // get username and password from req.body
-  // let username = req.body.username;
-  let password = req.body.password;
-  //get user id from query
-  let userID = [req.query.id]
+  const username = req.body.username
+  const password = req.body.password;
+  // store username as an array in values
+  const values = [username];
   // query from user where id is equal to username
-  const queryUser = 'SELECT * FROM users WHERE users._id = $1'
+  const queryUser = 'SELECT * FROM users WHERE username = $1'
   // check if username exits by querying the database
-  db.query(queryUser, userID, (err,user) => {
+  db.query(queryUser, values, (err,user) => {
     // if err send to global err handler 
-    if (!user.username) {
-      return next({ error: err }) 
+    if (!user.rows[0].username) {
+      return next({ 
+        error: err 
+      }) 
     } else {
-      // if password checks out send them to the main page
+      // if password checks out send back user id
       if (user.rows[0].password === password) {
-        // if it is send them to main page
+        //store in res.locals
+        res.locals.login = user.rows[0]._id;
+        // return next back to server.js
+        return next();
+      } else {
+        res.locals.login = 'password is incorrect';
         return next();
       }
     }
   })
 }
 
-module.exports = userController;
+userControllers.createPost = (req, res, next) => {
+  // destructure title, pros, cons, date  from the req body
+  const { _id, title, pros, cons, date, users_id } = req.body;
+  console.log(req.body);
+  // create query to insert into db
+  const postQuery = `INSERT INTO posts (_id, title, pros, cons, date, users_id)
+                    VALUES ('${_id}','${title}','${pros}','${cons}','${date}', '${users_id}')`
+  db.query (postQuery, (err, post) => {
+    console.log('query completed', post);
+    if (err) {
+      return next({ error: err })
+    } 
+    res.locals.posts = post;
+    return next()
+  })
+}
+
+module.exports = userControllers;
+

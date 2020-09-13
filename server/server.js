@@ -1,47 +1,59 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const userController = require('./controllers/userControllers');
+const cookieParser = require('cookie-parser')
+const userControllers = require('./controllers/userControllers');
+
 
 const app = express();
 const PORT = 3000;
-
-// handle requests to login
-// app.post('api/login', (req,res) => {};
-// grab username and password from req.body
-// see if username and password are in the database
-// if it is send them to main page
-// if not, keep them at login page
 
 //handle parsing request body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// handle requests to login
-// route to controller
-app.post('api/login', userController.logIn, (req, res) => {
-  res.redirect('/main');
+// serve from build folder with route '/build'
+app.use('/build', express.static(path.join(__dirname, '../build')));
+
+// handle requests to login 
+// route to controller 
+app.post('/api/login',
+  userControllers.verifyUser,
+  (req,res) => {
+    res.status(200).send(res.locals.login)
+})
+
+//handle signup request
+app.post('/api/signup',
+ userControllers.queryNewUser,
+ userControllers.createNewUser, 
+ (req, res) => {
+  res.status(200).json(res.locals.createuser)
 });
 
-//handle user sign up request
-//route them to controller
-app.post('api/signup', userController.createUser, (req, res) => {
-  res.status(200).send(/* send back to client the main page */);
-});
+//get req to get all posts in the post table
+// route to get all info from posts db
+app.get('/api/posts')
+
+// route to create posts in postgresl db
+app.post('/api/posts',
+  userControllers.createPost,
+  (req,res) => {
+  // middleware to create posts in db
+  res.status(200).send(res.locals.post) // respond with all post info
+})
 
 // catch all route handler
 app.use((req, res) => res.sendStatus(404));
 
-// catch all errors
+// global event handler
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 400,
-    message: { err: 'An error occurred' },
+    message: { err: err },
   };
   const errorObj = Object.assign({}, defaultErr, err);
-  // console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
 });
 
