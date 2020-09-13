@@ -9,6 +9,15 @@ const PostCard = props => {
     //div should have a unique key
     <div key={`${username}_${date}`}>
 
+      <div class="userPic">User Pic</div>
+      <div class="postBody">
+        <div class="postTitle">{title}</div>
+        <div class="prosContainer">{pros}</div>
+        <div class="consContainer">{cons}</div>
+        <div class="postDate">{date}</div>
+        <div class="Comments"></div>
+      </div>
+
     </div>
   )
 }

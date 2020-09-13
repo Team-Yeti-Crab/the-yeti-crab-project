@@ -12,7 +12,7 @@ const PostsFeed = props => {
   return (
     <div>
       {/* Several Post Cards get rendered here */}
-      {cardItem}
+      {postItems}
     </div>
   )
 }
