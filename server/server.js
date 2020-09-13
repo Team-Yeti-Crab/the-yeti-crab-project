@@ -3,8 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 const userControllers = require('./controllers/userControllers');
-
-
+const { EEXIST } = require('constants');
 const app = express();
 const PORT = 3000;
 
@@ -15,9 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // serve from build folder with route '/build'
 app.use('/build', express.static(path.join(__dirname, '../build')));
 
-// handle requests to login 
-// route to controller 
-app.post('/api/login',
+//handle login request
+app.post('/api/login', 
   userControllers.verifyUser,
   (req,res) => {
     res.status(200).json(res.locals.login)
@@ -30,6 +28,7 @@ app.post('/api/signup',
  (req, res) => {
   res.status(200).json(res.locals.createuser)
 });
+
 
 // get req to get all posts in the post table
 app.get('/api/posts',
@@ -47,8 +46,12 @@ app.post('/api/posts',
   res.status(200).json(res.locals.posts) // respond with all post info
 })
 
+
 // catch all route handler
-app.use((req, res) => res.sendStatus(404));
+app.use((req,res) => res.sendStatus(402))
+
+//get req to get all posts in the post table
+//req body has user id
 
 // global event handler
 app.use((err, req, res, next) => {
@@ -63,4 +66,4 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log('Server listening on port ' + PORT);
-});
+})
