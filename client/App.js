@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as actions from './actions/actions';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
 
 // mapping our state to props, so props will reflect our state's values.
 const mapStateToProps = (state) => ({
@@ -24,7 +25,11 @@ class App extends Component {
   render() {
     console.log(this.props);
 
-    return <div id='App'>{JSON.stringify(this.props)}</div>;
+    return (
+      <div id='App'>
+        <LandingPage />
+      </div>
+    );
   }
 }
 

@@ -3,9 +3,18 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 const Buttons = (props) => {
-  <button onClick={onClick} type={type} id={id}>
-    Woohoo!{this.props}
-  </button>;
+  return (
+    <div>
+      {/* onclick will change state path to "/login" */}
+      <button type='button' id='logInButton'>
+        Log-in
+      </button>
+      {/* onclick will change stare path to "/signup" */}
+      <button type='button' id='signUpButton'>
+        Sign Up!
+      </button>
+    </div>
+  );
 };
 
 // login button
