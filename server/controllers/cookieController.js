@@ -17,7 +17,7 @@ cookieController.setSSIDCookie = (req, res, next) => {
       return next({ error: err})
     }
     if (!req.cookies.ssid) {
-    res.cookie('ssid', data.rows[0]._id, { httpOnly: true });
+    res.cookie('yetissid', data.rows[0]._id, { httpOnly: true });
     }
     return next();
   })

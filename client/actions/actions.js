@@ -24,6 +24,7 @@ export const login = (userInfo) => {
       })
       // Expect user id from api call
       .then((res) => dispatch(loginSuccess(res.data)))
+      .then(()=> dispatch(getPosts()))
       .catch((err) => dispatch(loginFailed(err.message)));
   };
 };
@@ -81,14 +82,14 @@ export const signupFailed = (signupErr) => ({
   payload: { ...signupErr },
 });
 // GET POST ACTIONS
-export const getPosts = (info) => {
+export const getPosts = () => {
   return (dispatch) => {
     dispatch(getPostStart());
     // Fill in body later
     axios
-      .post('/api/getposts', { info })
-      .then((res) => dispatch(getPostSuccess(res)))
-      .catch((err) => dispatch(getPostFailed(err)));
+      .get('/api/posts')
+      .then((res) => dispatch(getPostSuccess(res.data)))
+      .catch((err) => dispatch(getPostFailed(err.message)));
   };
 };
 export const getPostStart = () => ({
@@ -96,7 +97,7 @@ export const getPostStart = () => ({
 });
 export const getPostSuccess = (getPostResponse) => ({
   type: actionTypes.GETPOST_SUCCESS,
-  payload: { ...getPostResponse },
+  payload: getPostResponse,
 });
 export const getPostFailed = (postErr) => ({
   type: actionTypes.GETPOST_FAILURE,
