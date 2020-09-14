@@ -2,16 +2,16 @@ import * as actionTypes from '../constants/actiontypes';
 import axios from 'axios';
 
 // Create specific action functions that return object/dispatch
-export const loginPopup = (dispatch) => (
-  dispatch({
+export const loginPopup = () => (
+  {
     type: actionTypes.LOGGING_IN
-  })
+  }
 );
 
-export const signupPopup = (dispatch) => (
-  dispatch({
+export const signupPopup = () => (
+  {
     type: actionTypes.SIGNING_UP
-  })
+  }
 );
 
 // LOGIN ACTIONS //
@@ -25,6 +25,7 @@ export const login = (userInfo) => {
       username: userInfo.username,
       password: userInfo.password
     })
+    // Expect user id from api call
     .then(res => dispatch(loginSuccess(res.data)))
     .catch(err => dispatch(loginFailed(err.message)));
   }
@@ -38,7 +39,7 @@ export const loginStarted = () => ({
 // login success dispatches upon successful completion of get request
 export const loginSuccess = (loginResponse) => ({
   type: actionTypes.LOGIN_SUCCESS,
-  payload: {...loginResponse}
+  payload: loginResponse
 });
 
 // Login failure dispatches if theres an error in the request
@@ -71,7 +72,7 @@ export const signupStart = () => ({
 // Signup success changes state based on successful response 
 export const signupSuccess = (signupResponse) => ({
   type: actionTypes.SIGNUP_SUCCESS,
-  payload: {...signupResponse}
+  payload: signupResponse
 });
 // Signup failure responds with the specific error message and adds it to state
 export const signupFailed = (signupErr) => ({
@@ -121,10 +122,3 @@ export const addPostFailed = (postErr) => ({
   payload: {...postErr}
 });
 
-// LOGIN AND SIGNUP REDIRECT
-export const loginRedirect = () => ({
-  type: actionTypes.LOGIN_REDIRECT
-});
-export const signupRedirect = () => ({
-  type: actionTypes.SIGNUP_REDIRECT
-})
