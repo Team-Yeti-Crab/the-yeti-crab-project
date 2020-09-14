@@ -1,6 +1,6 @@
 import React from 'react';
-import NewPostToggle from './newPostToggle';
-import NewPostModal from './newPostModal';
+import NewPostToggle from './NewPostToggle';
+import NewPostModal from './NewPostModal';
 import styles from '../../public/Styles/styles.scss';
 
 

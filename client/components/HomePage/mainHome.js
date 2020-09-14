@@ -1,6 +1,6 @@
 import React from 'react';
-import HomeNavBar from './homeNavBar';
-import PostsFeed from './postsFeed'
+import HomeNavBar from './HomeNavBar';
+import PostsFeed from './PostsFeed'
 
 //Will render entire home page
 const Home = props => {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PostCard from './postCard';
+import PostCard from './PostCard';
 
 const PostsFeed = props => {
   // Logic for creating several post card containers

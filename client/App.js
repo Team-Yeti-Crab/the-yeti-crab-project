@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import LoginPage from './components/LoginPage/LoginPage';
 import SignupPage from './components/SignUpPage/SignUpPage';
-import Home from './components/HomePage/mainHome';
+import Home from './components/HomePage/MainHome';
 
 // mapping our state to props, so props will reflect our state's values.
 const mapStateToProps = (state) => ({
