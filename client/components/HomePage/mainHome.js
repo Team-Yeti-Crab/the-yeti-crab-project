@@ -1,6 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import HomeNavBar from './homeNavBar';
 import PostsFeed from './postsFeed'
+
+const mapStateToProps = (state) => ({
+  posts: state.yetiReducer.posts,
+})
 
 //Will render entire home page
 const Home = props => {
@@ -17,4 +22,4 @@ const Home = props => {
 
 }
 
-export default Home;
+export default connect(mapStateToProps, null)(Home);

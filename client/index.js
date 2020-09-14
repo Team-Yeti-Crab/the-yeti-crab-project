@@ -7,7 +7,6 @@ import store from './store';
 // Load all css, sass, and typescript files here
 import styles from './public/Styles/styles.scss';
 
-
 ReactDOM.render(
   <Provider store={store}>
     <App />

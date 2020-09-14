@@ -17,17 +17,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // serve from build folder with route '/build'
 app.use('/build', express.static(path.join(__dirname, '../build')));
 
-// add cookie to any requests to / 
-// app.use('/', 
-//   cookieController.setCookie,
-//   (req,res) => {
-//     res.sendStatus(200);
-//   })git 
   
 //handle login request
 app.post('/api/login', 
   userControllers.verifyUser,
-  cookieController.setSSIDCookie,
+  // cookieController.setSSIDCookie,
   (req,res) => {
     res.status(200).json(res.locals.login)
 })
@@ -57,6 +51,12 @@ app.post('/api/posts',
   res.status(200).json(res.locals.posts) // respond with all post info
 })
 
+// add cookie to any requests to / 
+// app.use('/', 
+//   cookieController.setCookie,
+//   (req,res) => {
+//     res.sendStatus(200);
+//   })
 
 // catch all route handler
 app.use((req,res) => res.sendStatus(402))

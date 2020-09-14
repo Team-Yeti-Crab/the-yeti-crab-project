@@ -4,16 +4,27 @@ const NewPostModal = (props) => (
   <div id="newPostModal">
     {/* Input Fields -> Title, Pros, Cons */}
 
-    <form>
-      <label>TITLE</label>
-      <input tyep="text" id="ftitle"  name="ftitle"></input>
-      <label>PROS</label>
-      <input tyep="text" id="fpros"  name="fpros"></input>
-      <label>CONS</label>
-      <input tyep="text" id="fcons"  name="fcons"></input>
+    <form id="modalInterior">
+      <div id="modalTitle">
+        <label>TITLE</label>
+        <br />
+        <input type="text" id="ftitle"  name="ftitle"></input>
+      </div>
+      <div id="modalFlex">
+        <div>
+          <label>PROS</label>
+          <br />
+          <textarea type="text" id="fpros"  name="fpros"></textarea>
+        </div>
+        <div>
+          <label>CONS</label>
+          <br />
+          <textarea type="text" id="fcons"  name="fcons"></textarea>
+        </div>
+      </div>
     </form>
-
-    <button type="button" onClick={props.hide}>SAVE POST</button>
+    <br />
+    <button type="button" id="modalButton" onClick={props.hide}>SAVE POST</button>
 
   </div>
 )
