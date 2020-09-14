@@ -7,7 +7,6 @@ const Home = props => {
 
   return (
     <div id="Home">
-      <h1>Home page with Nav Bar</h1>
       {/* Home Nav Bar */}
       <HomeNavBar />
 

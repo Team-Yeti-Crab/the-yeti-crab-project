@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
+
 
 //newPostToggle will be used to render a newPost modal upon clicking the toggle button (the add post button).
 
-const newPostToggle = ({ toggle, content }) => {
+const NewPostToggle = ({ toggle, content }) => {
   //creates a functional component state called isShown which defaults to false. Also creates a function that can change the state of isShown.
   const [isShown, setIsShown] = useState(false);
 
@@ -21,4 +22,4 @@ const newPostToggle = ({ toggle, content }) => {
   );
 };
 
-export default newPostToggle;
+export default NewPostToggle;

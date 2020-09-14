@@ -1,5 +1,7 @@
 import React from 'react';
-import newPostToggle from 'newPostToggle'
+import NewPostToggle from './newPostToggle';
+import NewPostModal from './newPostModal';
+import styles from '../../public/Styles/styles.scss';
 
 
 const HomeNavBar = props => {
@@ -13,11 +15,9 @@ const HomeNavBar = props => {
 
       {/* Use newPostToggle to render a button which will open up a post input modal. The input modal will have a 'post' button which will remove the modal */}
 
-      <newPostToggle 
+      <NewPostToggle 
         toggle={show=><button type="button" id="postButton" onClick={show}>+POST</button>}
-        content={hide=>(
-          <NewPostModal hide={hide} />
-        )}
+        content={hide => <NewPostModal hide={hide} />}
       />
 
       {/* For now, profile pic will be set as a background image via CSS. Update this eventually to be a picture in a database? */}

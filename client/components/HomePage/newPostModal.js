@@ -1,11 +1,11 @@
 import React from 'react';
 
-const NewPostModal (props) => (
+const NewPostModal = (props) => (
   <div id="newPostModal">
     {/* Input Fields -> Title, Pros, Cons */}
 
     <form>
-      <label>Title</label>
+      <label>TITLE</label>
       <input tyep="text" id="ftitle"  name="ftitle"></input>
       <label>PROS</label>
       <input tyep="text" id="fpros"  name="fpros"></input>
