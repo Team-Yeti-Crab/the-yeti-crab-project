@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const Buttons = (props) => {
   return (
-    <div>
+    <div id='buttonContainer'>
       {/* onclick will change state path to "/login" */}
       <button type='button' id='logInButton' onClick={props.loginPopup}>
         Log-in

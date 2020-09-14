@@ -55,7 +55,6 @@ export const signup = (newUserInfo) => {
     // Axios post to signup
     axios
       .post('/api/signup', {
-        
         firstName: newUserInfo.firstName,
         lastName: newUserInfo.lastName,
         email: newUserInfo.email,
