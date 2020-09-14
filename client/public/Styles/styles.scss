@@ -1,6 +1,4 @@
 @import 'newPostModal';
-@import 'landingPage';
-
 // HomePage components 
 //  HomeNavBar ;
 // * {
@@ -8,7 +6,7 @@
 //     padding: 0;
 // }
 html {
-    background: linear-gradient(180deg, #63BAFD 0%, rgba(196, 196, 196, 0) 100%);
+    background: linear-gradient(0deg, #63BAFD 0%, rgba(196, 196, 196, 0) 100%);
     background-repeat: no-repeat;
     min-height: 100%;
 }
@@ -22,11 +20,12 @@ body {
 // HomePage components 
 // HomeNavBar 
 #homeNavBar {
-    background: linear-gradient(90deg, #63BAFD, #fff);
+    // background: linear-gradient(90deg, #63BAFD, #fff);
+    background-color: #fff;
     padding: 5px;
 }
-// #homeYetiLogo {
-//     background-image: url('../CuteYeti.png');
+// #homeNavBar #homeYetiLogo {
+//     background-image: url('../yeti_logo.png');
 // }
 // #homeYetiLogo {
 // }

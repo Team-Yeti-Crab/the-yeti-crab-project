@@ -8,7 +8,7 @@ const NewPostModal = (props) => (
       <div id="modalTitle">
         <label>TITLE</label>
         <br />
-        <input type="text" id="ftitle"  name="ftitle"></input>
+        <input type="text" id="ftitle"  name="ftitle" placeholder="What's on your mind?"></input>
       </div>
       <hr />
       <div id="modalFlex">
