@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+
 
 //newPostToggle will be used to render a newPost modal upon clicking the toggle button (the add post button).
 
