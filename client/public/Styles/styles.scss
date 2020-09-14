@@ -23,14 +23,15 @@ body {
 // HomeNavBar 
 #homeNavBar {
     // background: linear-gradient(90deg, #63BAFD, #fff);
-    background-color: #fff;
+    background-color: #90c7f1;
     padding: 5px;
+    height: 75px;
 }
-// #homeNavBar #homeYetiLogo {
-//     background-image: url('../yeti_logo.png');
-// }
-// #homeYetiLogo {
-// }
+#homeYetiLogo {
+  width: 100px;
+  height: 75px;
+}
+
 #postButton {
     width: 100px;
     border-radius: 15px;
@@ -39,7 +40,7 @@ body {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     float: right;
     margin-right: 15px;
-    margin-top: -8px;
+    margin-top: 25px;
 }
 // #profilePic {
 // }
