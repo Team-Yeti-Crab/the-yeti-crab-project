@@ -104,19 +104,20 @@ userControllers.verifyUser = (req, res, next) => {
 
 userControllers.createPost = (req, res, next) => {
   // destructure title, pros, cons, date  from the req body
-  const {title, pros, cons} = req.body;
+  const {userId, title, pros, cons} = req.body;
   // get current date as a stretch feature because it keeps breaking the table
   // let date = Date.now
   // store each req input into an array of values;
-  let values = [title, pros, cons];
+  let values = [Math.floor(Math.random() * 1000), title, pros, cons, userId];
   // create query to insert into db
-  const postQuery = `INSERT INTO posts (_id, title, pros, cons)
-                     VALUES (${Math.floor(Math.random() * 1000)}, $1, $2, $3)`
+  const postQuery = `INSERT INTO posts (_id, title, pros, cons, users_id)
+                     VALUES ($1, $2, $3, $4, $5) RETURNING *`
   db.query (postQuery, values, (err, post) => {
     if (err) {
       return next({ error: err });
     }
-    res.locals.posts = post;
+    console.log('Insert values: ', post.rows[0]);
+    res.locals.posts = post.rows[0];
     return next();
   });
 };

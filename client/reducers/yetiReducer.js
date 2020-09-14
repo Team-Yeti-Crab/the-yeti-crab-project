@@ -103,7 +103,7 @@ const yetiReducer = (state = initialState, action) => {
     case actionTypes.ADDPOST_SUCCESS:
       return {
         ...state,
-        posts: [...state.posts, action.payload],
+        posts: [action.payload, ...state.posts],
         loading: false,
         error: null,
       };
