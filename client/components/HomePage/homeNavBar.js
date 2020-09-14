@@ -1,5 +1,5 @@
 import React from 'react';
-import newPostToggle from 'newPostToggle'
+import NewPostToggle from './newPostToggle';
 
 
 const HomeNavBar = props => {
@@ -13,7 +13,7 @@ const HomeNavBar = props => {
 
       {/* Use newPostToggle to render a button which will open up a post input modal. The input modal will have a 'post' button which will remove the modal */}
 
-      <newPostToggle 
+      <NewPostToggle 
         toggle={show=><button type="button" id="postButton" onClick={show}>+POST</button>}
         content={hide=>(
           <NewPostModal hide={hide} />
