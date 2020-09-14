@@ -21,7 +21,3 @@ export const ADD_POSTS = 'ADD_POSTS';
 export const ADDPOST_START = 'ADDPOST_START';
 export const ADDPOST_SUCCESS = 'ADDPOST_SUCCESS';
 export const ADDPOST_FAILURE = 'ADDPOST_FAILURE';
-// Login Modal constant
-export const LOGIN_REDIRECT = 'LOGIN_REDIRECT';
-// Signup Modal constant
-export const SIGNUP_REDIRECT = 'SIGNUP_REDIRECT';

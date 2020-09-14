@@ -3,20 +3,31 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 const userControllers = require('./controllers/userControllers');
-const { EEXIST } = require('constants');
+const cookieController = require('./controllers/cookieController');
+
+
 const app = express();
 const PORT = 3000;
 
 //handle parsing request body
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // serve from build folder with route '/build'
 app.use('/build', express.static(path.join(__dirname, '../build')));
 
+// add cookie to any requests to / 
+app.use('/', 
+  cookieController.setCookie,
+  (req,res) => {
+    res.sendStatus(200);
+  })
+  
 //handle login request
 app.post('/api/login', 
   userControllers.verifyUser,
+  cookieController.setSSIDCookie,
   (req,res) => {
     res.status(200).json(res.locals.login)
 })
