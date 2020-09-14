@@ -6,7 +6,7 @@ const Buttons = (props) => {
   return (
     <div>
       {/* onclick will change state path to "/login" */}
-      <button type='button' id='logInButton'>
+      <button type='button' id='loginButton'>
         Log-in
       </button>
       {/* onclick will change stare path to "/signup" */}

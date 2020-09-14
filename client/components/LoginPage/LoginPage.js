@@ -7,13 +7,13 @@ const LoginPage = (props) => {
       <YetiLogo />
       <input
         type='text'
-        id='LoginUsername'
+        id='loginUsername'
         placeholder='Username'
         required='true'
       ></input>
       <input
         type='text'
-        id='LoginPassword'
+        id='loginPassword'
         placeholder='Password'
         required='true'
       ></input>

@@ -15,7 +15,7 @@ const PostCard = props => {
         <div class="prosContainer">{pros}</div>
         <div class="consContainer">{cons}</div>
         <div class="postDate">{date}</div>
-        <div class="Comments"></div>
+        <div class="comments"></div>
       </div>
 
     </div>
