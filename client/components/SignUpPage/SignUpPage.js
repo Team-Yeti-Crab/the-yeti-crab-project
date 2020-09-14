@@ -1,7 +1,31 @@
 import React from 'react';
 import YetiLogo from '../YetiLogo';
+import * as actions from '../../actions/actions';
+import { connect } from 'react-redux';
+
+const mapDisaptchToProps = (dispatch) => ({
+  signup: (userInfo) => dispatch(actions.signup(userInfo)),
+});
 
 const SignUpPage = (props) => {
+  function SignupWrapper() {
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const email = document.getElementById('email').value;
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const confirmpassword = document.getElementById('confirmpassword').value;
+    const reqBody = {
+      firstName,
+      lastName,
+      email,
+      username,
+      password,
+      confirmpassword,
+    };
+    props.signup(reqBody);
+  }
+
   return (
     <div className='AuthContainer'>
       <YetiLogo />
@@ -35,11 +59,17 @@ const SignUpPage = (props) => {
         placeholder='Password'
         required='true'
       ></input>
-      <button type='button' id='signupPageButton' onClick=''>
+      <input
+        type='password'
+        id='confirmpassword'
+        placeholder='Confirm Password'
+        required='true'
+      ></input>
+      <button type='button' id='signupPageButton' onClick={SignupWrapper}>
         Submit
       </button>
     </div>
   );
 };
 
-export default SignUpPage;
+export default connect(null, mapDisaptchToProps)(SignUpPage);
