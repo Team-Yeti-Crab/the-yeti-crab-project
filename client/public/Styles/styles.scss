@@ -1,2 +1,115 @@
 @import 'newPostModal';
 @import 'landingPage';
+
+// HomePage components 
+//  HomeNavBar ;
+// * {
+//     margin: 0; 
+//     padding: 0;
+// }
+html {
+    background: linear-gradient(180deg, #63BAFD 0%, rgba(196, 196, 196, 0) 100%);
+    background-repeat: no-repeat;
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    padding: 0;
+    margin: 0;
+
+}
+// HomePage components 
+// HomeNavBar 
+#homeNavBar {
+    background: linear-gradient(90deg, #63BAFD, #fff);
+    padding: 5px;
+}
+// #homeYetiLogo {
+//     background-image: url('../CuteYeti.png');
+// }
+// #homeYetiLogo {
+// }
+#postButton {
+    width: 100px;
+    border-radius: 15px;
+    border: none;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    float: right;
+    margin-right: 15px;
+    margin-top: -8px;
+}
+// #profilePic {
+// }
+// MainHome.js
+
+// #home {
+// }
+
+// NewPostModal 
+
+// #ftitle {
+// }
+// #fpros {
+// }
+// #fcons {
+// }
+
+// Postcard  
+
+// .userPic {
+// }
+// .postBody {
+// }
+// .postTitle {
+// }
+// .prosContainer {
+// }
+// .consContainer {
+// }
+// .postDate {
+// }
+// .comments {
+// }
+
+// Login Page 
+
+// #loginUsername {
+// }
+// #loginPassword {
+// }
+// #loginPageButton {
+// }
+
+// Signup Page 
+
+// #firstname {
+// }
+// #lastname {
+// }
+// #email {
+// }
+// #username {
+// }
+// #password {
+// }
+// #signupPageButton {
+// }
+
+// Buttons 
+
+// #loginButton {
+// }
+// #signupButton {
+// }
+
+// LandingPage 
+
+// .authContainer {
+// }
+
+// YetiLogo 
+
+// #yeti-Logo {
+// }

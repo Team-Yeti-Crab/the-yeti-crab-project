@@ -84,7 +84,7 @@ const yetiReducer = (state = initialState, action) => {
     case actionTypes.GETPOST_SUCCESS:
       return {
         ...state,
-        posts: [...action.payload],
+        posts: action.payload,
         loading: false,
         error: null,
       };
@@ -92,7 +92,7 @@ const yetiReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: action.payload.error,
+        error: action.payload,
       };
     // ADD POST REDUCERS
     case actionTypes.ADDPOST_START:

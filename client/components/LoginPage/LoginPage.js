@@ -10,8 +10,8 @@ const mapDispatchToProps = (dispatch) => ({
 // create the LoginPage component passing in props to render our Yeti Logo, two input fields and login button.
 const LoginPage = (props) => {
   function loginWrapper() {
-    const username = document.getElementById('LoginUsername').value;
-    const password = document.getElementById('LoginPassword').value;
+    const username = document.getElementById('loginUsername').value;
+    const password = document.getElementById('loginPassword').value;
     const reqBody = { username, password };
     props.login(reqBody);
   }
@@ -22,13 +22,13 @@ const LoginPage = (props) => {
       <div className='AuthButtons'>
       <input
         type='text'
-        id='LoginUsername'
+        id='loginUsername'
         placeholder='Username'
         required='true'
       ></input>
       <input
         type='password'
-        id='LoginPassword'
+        id='loginPassword'
         placeholder='Password'
         required='true'
       ></input>
