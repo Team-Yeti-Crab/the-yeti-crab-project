@@ -1,27 +1,42 @@
-@import 'newPostModal'
+@import 'newPostModal';
 // HomePage components 
 //  HomeNavBar ;
 // * {
 //     margin: 0; 
 //     padding: 0;
 // }
-// html {
-//     // background: linear-gradient(#63BAFD, #fff);
-//     background: linear-gradient(#63BAFD, #fff);
-//     background-repeat: no-repeat;
-// }
+html {
+    background: linear-gradient(180deg, #63BAFD 0%, rgba(196, 196, 196, 0) 100%);
+    background-repeat: no-repeat;
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    padding: 0;
+    margin: 0;
+
+}
 // HomePage components 
 // HomeNavBar 
-// #homeNavBar {
-//     background: linear-gradient(90deg, #63BAFD, #fff);
+#homeNavBar {
+    background: linear-gradient(90deg, #63BAFD, #fff);
+    padding: 5px;
+}
+// #homeYetiLogo {
+//     // background-image: url('../yeti_logo.png');
 // }
 // #homeYetiLogo {
-    // background-image: url('../davide_cropped.png');
 // }
-// #homeYetiLogo {
-// }
-// #postButton {
-// }
+#postButton {
+    width: 100px;
+    border-radius: 15px;
+    border: none;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    float: right;
+    margin-right: 15px;
+}
 // #profilePic {
 // }
 // MainHome.js
@@ -31,8 +46,55 @@
 
 // NewPostModal 
 
-// #newPostModal {
-// }
+#newPostModal {
+    border: none;
+    background-color: white;
+    width: 400px;
+    min-height: 300px;
+    max-height: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+#newPostModal button {
+    width: 120px;
+    border-radius: 15px;
+    border: none;
+    background-color: #63BAFD;
+    height: 50px;
+    margin-bottom: 50px;
+}
+
+#modalInterior div {
+    margin: 15px;
+
+}
+
+#modalInterior div label {
+    color: black;
+}
+
+#modalFlex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: left;
+}
+
+#modalFlex div textarea {
+    width: 165px;
+    min-height: 250px;
+}
+
+#modalTitle {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
 // #ftitle {
 // }
 // #fpros {
