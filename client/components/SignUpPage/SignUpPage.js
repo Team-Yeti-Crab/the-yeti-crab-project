@@ -29,6 +29,7 @@ const SignUpPage = (props) => {
   return (
     <div className='AuthContainer'>
       <YetiLogo />
+      <div className='SignUpContainer'>
       <input
         type='text'
         id='firstName'
@@ -68,6 +69,7 @@ const SignUpPage = (props) => {
       <button type='button' id='signupPageButton' onClick={SignupWrapper}>
         Submit
       </button>
+      </div>
     </div>
   );
 };

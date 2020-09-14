@@ -1,0 +1,70 @@
+#yeti-Logo {
+  height: 300px;
+  width: 350px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+}
+html{
+  min-height: 100%;
+  // background: linear-gradient(180deg, #63BAFD 0%, rgba(196, 196, 196, 0) 100%);
+  background: linear-gradient(180deg,rgb(226, 238, 241) 0%, #56b2f8 100%);
+}
+#buttonContainer {
+  margin-left: auto;
+  margin-right: auto;
+  width: min-content;
+  margin-top: 20px;
+}
+#logInButton {
+  width: 100px;
+  height: 30px;
+  border: 1px solid rgb(37, 118, 165);
+  color: rgb(22, 71, 100);
+  border-radius: 3px;
+}
+#signUpButton {
+  width: 100px;
+  height: 30px;
+  margin-top: 10px;
+  border: 1px solid rgb(37, 118, 165);
+  color: rgb(22, 71, 100);
+  border-radius: 3px;
+}
+.AuthButtons { 
+  margin-left: auto;
+  margin-right: auto;
+  width: min-content;
+  margin-top: 20px;
+}
+
+#LoginPassword {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+#loginPageButton {
+  width: 153px;
+  height: 30px;
+  border: 1px solid rgb(37, 118, 165);
+  color: rgb(22, 71, 100);
+  border-radius: 3px;
+}
+
+.SignUpContainer {
+  margin-left: auto;
+  margin-right: auto;
+  width: min-content;
+  margin-top: 20px;
+  line-height: 1.7;
+}
+#signupPageButton {
+  margin-top: 5px;
+  width: 153px;
+  height: 30px;
+  border: 1px solid rgb(37, 118, 165);
+  color: rgb(22, 71, 100);
+  border-radius: 3px;
+}
+
