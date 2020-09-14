@@ -6,7 +6,7 @@ import YetiLogo from './YetiLogo';
 
 const LandingPage = (props) => {
   return (
-    <div className='AuthContainer'>
+    <div className='authContainer'>
       {/* Cute Yeti Logo */}
       <YetiLogo />
       {/* Import our buttons */}
