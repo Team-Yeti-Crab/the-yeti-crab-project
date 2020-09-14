@@ -108,9 +108,9 @@ export const addPost = (info) => {
     dispatch(addPostStart());
     // Fill in body later
     axios
-      .post('/api/addpost', { info })
-      .then((res) => dispatch(addPostSuccess(res)))
-      .catch((err) => dispatch(addPostFailed(err)));
+      .post('/api/posts', info)
+      .then((res) => dispatch(addPostSuccess(res.data)))
+      .catch((err) => dispatch(addPostFailed(err.message)));
   };
 };
 export const addPostStart = () => ({
@@ -118,9 +118,9 @@ export const addPostStart = () => ({
 });
 export const addPostSuccess = (addPostResponse) => ({
   type: actionTypes.ADDPOST_SUCCESS,
-  payload: { ...addPostResponse },
+  payload: addPostResponse,
 });
 export const addPostFailed = (postErr) => ({
   type: actionTypes.ADDPOST_FAILURE,
-  payload: { ...postErr },
+  payload: postErr,
 });
