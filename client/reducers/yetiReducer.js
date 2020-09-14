@@ -38,6 +38,7 @@ const yetiReducer = (state = initialState, action) => {
         loading: true
       }
     case actionTypes.LOGIN_SUCCESS :
+      console.log(action.payload);
       return {
         ...state,
         isLoggingIn: false,

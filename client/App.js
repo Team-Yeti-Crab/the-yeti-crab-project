@@ -40,14 +40,22 @@ class App extends Component {
       <Router>
         <div id='App'>
           <Switch>
-            <Route path='/login' component={LoginPage} />
-            <Route path='/signup' component={SignupPage} />
+            <Route path='/login'>
+              {this.props.isLoggedIn && <Redirect to='/home' />}
+              {this.props.isSigningUp && <Redirect to='/signup' />}
+              <LoginPage />
+            </Route>
+            <Route path='/signup'>
+              {this.props.isLoggedIn && <Redirect to='/home' />}
+              {this.props.isLoggingIn && <Redirect to='/login' />}
+              <SignupPage />
+            </Route>
             <Route path='/home' component={Home} onEnter={this.checkIfLoggedIn} />
             <Route exact path='/'>
               {/* Come back to later to fix bug where user can enter main page without auth */}
+              {this.props.isLoggedIn && <Redirect to='/home' />}
               {this.props.isLoggingIn && <Redirect to='/login' />}
               {this.props.isSigningUp && <Redirect to='/signup' />}
-              {this.props.isLoggedIn && <Redirect to='/home' />}
               <LandingPage />
             </Route>
           </Switch>
