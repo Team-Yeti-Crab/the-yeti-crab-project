@@ -7,7 +7,7 @@ const PostCard = props => {
   return (
 
     //div should have a unique key
-    <div key={`${username}_${date}`}>
+    <div key={`${username}_${date}`} className="postCard">
 
       <div class="userPic">User Pic</div>
       <div class="postBody">
