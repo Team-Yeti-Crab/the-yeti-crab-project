@@ -10,22 +10,22 @@ const NewPostModal = (props) => (
         <br />
         <input type="text" id="ftitle"  name="ftitle"></input>
       </div>
+      <hr />
       <div id="modalFlex">
         <div>
-          <label>PROS</label>
+          <label id="fpros">PROS</label>
           <br />
-          <textarea type="text" id="fpros"  name="fpros"></textarea>
+          <textarea type="text"   name="fpros"></textarea>
         </div>
         <div>
-          <label>CONS</label>
+          <label id="fcons">CONS</label>
           <br />
-          <textarea type="text" id="fcons"  name="fcons"></textarea>
+          <textarea type="text"   name="fcons"></textarea>
         </div>
       </div>
     </form>
     <br />
     <button type="button" id="modalButton" onClick={props.hide}>SAVE POST</button>
-
   </div>
 )
 
