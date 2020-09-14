@@ -18,11 +18,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/build', express.static(path.join(__dirname, '../build')));
 
 // add cookie to any requests to / 
-app.use('/', 
-  cookieController.setCookie,
-  (req,res) => {
-    res.sendStatus(200);
-  })
+// app.use('/', 
+//   cookieController.setCookie,
+//   (req,res) => {
+//     res.sendStatus(200);
+//   })git 
   
 //handle login request
 app.post('/api/login', 
