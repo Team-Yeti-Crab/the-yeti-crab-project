@@ -19,6 +19,7 @@ const LoginPage = (props) => {
   return (
     <div className='AuthContainer'>
       <YetiLogo />
+      <div className='AuthButtons'>
       <input
         type='text'
         id='LoginUsername'
@@ -34,6 +35,7 @@ const LoginPage = (props) => {
       <button type='button' id='loginPageButton' onClick={loginWrapper}>
         Login
       </button>
+      </div>
     </div>
   );
 };
