@@ -90,6 +90,7 @@ userControllers.verifyUser = (req, res, next) => {
     } else {
       // if password checks out send back user id
       if (user.rows[0].password === password) {
+        console.log(user.rows[0]);
         //store in res.locals
         res.locals.login = user.rows[0]._id;
         // return next back to server.js
@@ -105,12 +106,11 @@ userControllers.verifyUser = (req, res, next) => {
 userControllers.createPost = (req, res, next) => {
   // destructure title, pros, cons, date  from the req body
   const { _id, title, pros, cons, date, users_id } = req.body;
-  console.log(req.body);
   // create query to insert into db
   const postQuery = `INSERT INTO posts (_id, title, pros, cons, date, users_id)
-                    VALUES ('${_id}','${title}','${pros}','${cons}','${date}', '${users_id}')`;
-  db.query(postQuery, (err, post) => {
-    console.log('query completed', post);
+  VALUES ('${_id}','${title}','${pros}','${cons}','${date}', '${users_id}')`
+  db.query (postQuery, (err, post) => {
+
     if (err) {
       return next({ error: err });
     }
