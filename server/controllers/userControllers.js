@@ -63,7 +63,7 @@ userControllers.verifyUser = (req, res, next) => {
       return next({ 
         error: err 
       }) 
-    } else {
+    } 
       // if password checks out send back user id
       if (user.rows[0].password === password) {
         console.log(user.rows[0]);
@@ -75,17 +75,17 @@ userControllers.verifyUser = (req, res, next) => {
         res.locals.login = 'password is incorrect';
         return next();
       }
-    }
   })
 }
 
 userControllers.createPost = (req, res, next) => {
   // destructure title, pros, cons, date  from the req body
   const { _id, title, pros, cons, date, users_id } = req.body;
+  let values = [_id, title, pros, cons, date, users_id];
   // create query to insert into db
   const postQuery = `INSERT INTO posts (_id, title, pros, cons, date, users_id)
-                    VALUES ('${_id}','${title}','${pros}','${cons}','${date}', '${users_id}')`
-  db.query (postQuery, (err, post) => {
+                    VALUES ($1, $2, $3, $4, $5, $6)`
+  db.query (postQuery, values, (err, post) => {
     if (err) {
       return next({ error: err })
     } 
