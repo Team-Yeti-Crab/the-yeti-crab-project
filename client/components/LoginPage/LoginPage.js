@@ -1,6 +1,8 @@
 import React from 'react';
 import YetiLogo from '../YetiLogo';
+// import React and YetiLogo
 
+// create the LoginPage component passing in props to render our Yeti Logo, two input fields and login button.
 const LoginPage = (props) => {
   return (
     <div className='AuthContainer'>
@@ -24,4 +26,5 @@ const LoginPage = (props) => {
   );
 };
 
+//export the LoginPage
 export default LoginPage;
