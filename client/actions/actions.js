@@ -2,16 +2,16 @@ import * as actionTypes from '../constants/actiontypes';
 import axios from 'axios';
 
 // Create specific action functions that return object/dispatch
-export const loginPopup = (dispatch) => (
-  dispatch({
+export const loginPopup = () => (
+  {
     type: actionTypes.LOGGING_IN
-  })
+  }
 );
 
-export const signupPopup = (dispatch) => (
-  dispatch({
+export const signupPopup = () => (
+  {
     type: actionTypes.SIGNING_UP
-  })
+  }
 );
 
 // LOGIN ACTIONS //
@@ -121,10 +121,3 @@ export const addPostFailed = (postErr) => ({
   payload: {...postErr}
 });
 
-// LOGIN AND SIGNUP REDIRECT
-export const loginRedirect = () => ({
-  type: actionTypes.LOGIN_REDIRECT
-});
-export const signupRedirect = () => ({
-  type: actionTypes.SIGNUP_REDIRECT
-})
