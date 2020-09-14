@@ -17,7 +17,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // serve from build folder with route '/build'
 app.use('/build', express.static(path.join(__dirname, '../build')));
 
-
   
 //handle login request
 app.post('/api/login', 

@@ -80,17 +80,17 @@ userControllers.verifyUser = (req, res, next) => {
   const values = [username];
   // query from user where id is equal to username
   const queryUser = 'SELECT * FROM users WHERE username = $1';
-  // check if username exits by querying the database
+  // check if username exists by querying the database
   db.query(queryUser, values, (err, user) => {
     // if err send to global err handler
     if (!user.rows[0].username) {
-      return next({
-        error: err,
-      });
-    } else {
+      return next({ 
+        error: err 
+      }) 
+    } 
       // if password checks out send back user id
       if (user.rows[0].password === password) {
-        console.log(user.rows[0]);
+        // console.log(user.rows[0]);
         //store in res.locals
         res.locals.login = user.rows[0]._id;
         // return next back to server.js
@@ -99,18 +99,20 @@ userControllers.verifyUser = (req, res, next) => {
         res.locals.login = 'password is incorrect';
         return next();
       }
-    }
-  });
-};
+  })
+}
 
 userControllers.createPost = (req, res, next) => {
   // destructure title, pros, cons, date  from the req body
-  const { _id, title, pros, cons, date, users_id } = req.body;
+  const {title, pros, cons} = req.body;
+  // get current date as a stretch feature because it keeps breaking the table
+  // let date = Date.now
+  // store each req input into an array of values;
+  let values = [title, pros, cons];
   // create query to insert into db
-  const postQuery = `INSERT INTO posts (_id, title, pros, cons, date, users_id)
-  VALUES ('${_id}','${title}','${pros}','${cons}','${date}', '${users_id}')`
-  db.query (postQuery, (err, post) => {
-
+  const postQuery = `INSERT INTO posts (_id, title, pros, cons)
+                     VALUES (${Math.floor(Math.random() * 1000)}, $1, $2, $3)`
+  db.query (postQuery, values, (err, post) => {
     if (err) {
       return next({ error: err });
     }
