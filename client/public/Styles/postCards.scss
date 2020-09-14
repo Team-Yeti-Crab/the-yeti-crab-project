@@ -1,0 +1,63 @@
+.postCard {
+    border: 1px solid #85DAFF;
+    background: #78BEF3;
+    max-width: 500px;
+    min-width: 500px;
+    min-height: 200px;
+    margin: 15px auto;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 10px;
+    position: relative;
+}
+
+.postCard div {
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: white;
+}
+
+.postTitle {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.2em;
+}
+
+.prosAndCons h3 {
+    font-size: 0.8em;
+    padding: 0;
+    margin: 0;
+    margin-top: 10px ;
+}
+
+.prosAndCons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    margin: 0; 
+    padding: 0;
+}
+
+.prosContainer, .consContainer {
+    min-width: 200px;
+}
+
+.Comments {
+    font-size: 0.8em;
+    position: absolute;
+    bottom: 5px;
+}
+
+.userPic {
+    position: absolute;
+    bottom: 50px;
+    left: -130px; 
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+.userPic img {
+    width: 15%;
+    background-repeat: none;
+    border: 1px solid white;
+    border-radius: 50%;
+}
