@@ -63,6 +63,7 @@ export const signup = (newUserInfo) => {
         confirmPassword: newUserInfo.confirmpassword,
       })
       .then((res) => dispatch(signupSuccess(res.data)))
+      .then(()=> dispatch(getPosts()))
       .catch((err) => dispatch(signupFailed(err.message)));
   };
 };
