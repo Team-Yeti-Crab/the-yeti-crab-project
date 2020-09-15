@@ -10,7 +10,9 @@ const LandingPage = (props) => {
       {/* Cute Yeti Logo */}
       <YetiLogo />
       {/* Import our buttons */}
+      <h1 id="titleText">The Yeti Report</h1>
       <Buttons />
+      <br />
     </div>
   );
 };

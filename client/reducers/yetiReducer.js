@@ -49,6 +49,7 @@ const yetiReducer = (state = initialState, action) => {
         error: null,
       };
     case actionTypes.LOGIN_FAILURE:
+      alert('Incorrect information!')
       return {
         ...state,
         loading: false,
@@ -70,6 +71,7 @@ const yetiReducer = (state = initialState, action) => {
         error: null,
       };
     case actionTypes.SIGNUP_FAILURE:
+      // alert('Failed to create new user!')
       return {
         ...state,
         loading: false,
