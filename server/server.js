@@ -2,50 +2,76 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
-const userController = require('./controllers/userControllers');
+const userControllers = require('./controllers/userControllers');
+const cookieController = require('./controllers/cookieController');
+
 
 const app = express();
 const PORT = 3000;
 
-// handle requests to login 
-app.post('api/login', (req,res) => {
-  // grab username and password from req.body
-  // see if username and password are in the database 
-  // if it is send them to main page
-  // if not, keep them at login page
-
-
 //handle parsing request body
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
- staging-branch
 
-// handle requests to login 
-// route to controller 
-app.post('api/login',
-  userController.logIn,
- (req,res) => {
-    res.redirect('/main')
+// serve from build folder with route '/build'
+app.use('/build', express.static(path.join(__dirname, '../build')));
+
+  
+//handle login request
+app.post('/api/login', 
+  userControllers.verifyUser,
+  // cookieController.setSSIDCookie,
+  (req,res) => {
+    res.status(200).json(res.locals.login)
 })
 
-//handle user sign up request
-//route them to controller
-app.post('api/signup', userController.createUser, (req, res) => {
-  res.status(200).send(/* send back to client the main page */);
+//handle signup request
+app.post('/api/signup',
+ userControllers.queryNewUser,
+ userControllers.createNewUser, 
+ (req, res) => {
+  res.status(200).json(res.locals.createuser)
 });
 
-// catch all route handler
-app.use((req,res) => res.sendStatus(404))
 
-// catch all errors
+// get req to get all posts in the post table
+app.get('/api/posts',
+  userControllers.getAllPosts,
+  (req, res) => {
+  res.status(200).json(res.locals.posts)
+})
+
+// post req to create posts in posts table
+app.post('/api/posts',
+  // middleware to create posts
+  userControllers.createPost,
+  (req,res) => {
+  // middleware to create posts in db
+  res.status(200).json(res.locals.posts) // respond with all post info
+})
+
+// add cookie to any requests to / 
+// app.use('/', 
+//   cookieController.setCookie,
+//   (req,res) => {
+//     res.sendStatus(200);
+//   })
+
+// catch all route handler
+app.use((req,res) => res.sendStatus(402))
+
+//get req to get all posts in the post table
+//req body has user id
+
+// global event handler
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 400,
-    message: { err: 'An error occurred' },
+    message: { err: err },
   };
   const errorObj = Object.assign({}, defaultErr, err);
-  // console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
 });
 

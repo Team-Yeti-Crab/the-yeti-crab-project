@@ -9,11 +9,16 @@ import rootReducer from './reducers/index';
 // import thunk from thunker
 import thunk from 'redux-thunk';
 
+import axios from 'axios';
+
 // we will create our store here!
 // Declare a const var with the label store and set it equal to the eval result of createStore passing in rootReducer
 
 // Remove composeWithDevTools if it becomes a problem
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk.withExtraArgument(axios))),
+);
 
 //export our store here
 export default store;

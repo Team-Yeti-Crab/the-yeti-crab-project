@@ -1,0 +1,60 @@
+#newPostModal {
+  position: fixed;
+  right: 40vw;
+  top: 20vh;
+  border: none;
+  background-color: white;
+  width: 400px;
+  min-height: 300px;
+  max-height: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0px 4px 4px 10000px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+}
+#newPostModal hr {
+  width: 90%;
+}
+#newPostModal button {
+  width: 120px;
+  border-radius: 15px;
+  border: none;
+  background-color: #63BAFD;
+  height: 50px;
+  margin-bottom: 50px;
+}
+
+#modalInterior div {
+  margin: 15px;
+
+}
+
+#modalInterior div label {
+  color: black;
+}
+
+#modalFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: left;
+}
+
+#modalFlex div textarea {
+  width: 165px;
+  min-height: 250px;
+}
+
+#modalTitle, #fcons, #fpros {
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  font-style: italic;
+}
+
+#modalTitle input {
+  border: none;
+}
