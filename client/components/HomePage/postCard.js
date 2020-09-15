@@ -4,7 +4,7 @@ const PostCard = props => {
   //assume we have title, pros, cons, user, time props
   const { title, pros, cons, date, user_id } = props
   const images = ["../public/jesus_cropped.png", "../public/davide_cropped.png", "../public/aaron_cropped.png", "../public/liam_cropped.png", "../public/alex_cropped.png"]
-  let index = Math.floor(Math.random() * 5)
+  let index = Math.floor(Math.random() * 5);
 
   return (
 
